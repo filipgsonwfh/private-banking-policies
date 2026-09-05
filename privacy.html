@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy Policy — private-banking</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main>
+<p class="eyebrow"><a href="./">private-banking</a></p>
+<h1>Privacy Policy</h1>
+<p class="lede">
+  <strong>private-banking</strong> is a personal finance dashboard that one person runs on
+  one computer for their own bank accounts. There is no hosted service, no sign-up, no other
+  user, and nothing is sold or shared. This page describes exactly what it does with data —
+  every statement here was checked against the source code.
+</p>
+
+<h2>Who runs it</h2>
+<p>
+  Filip Gustafsson, operating a private self-hosted installation.
+  Contact: <a href="mailto:filip.gustafsson@wfhconsulting.se">filip.gustafsson@wfhconsulting.se</a>.
+</p>
+<p>
+  Because the operator, the only user and the only data subject are the same person, most of
+  what a privacy policy normally governs does not arise. Purely personal or household use also
+  falls outside the GDPR under Article 2(2)(c). Where the software is used for company
+  accounts, ordinary company obligations apply and this notice is not a substitute for them.
+</p>
+
+<h2>What it stores</h2>
+<p>Everything is written to a local SQLite file on the operator's own machine:</p>
+<ul>
+  <li>Account identity — IBAN, account name and product, account type, currency, and Swedish tax wrapper (ISK, KF, AF, IPS, TJP).</li>
+  <li>Balances over time, with the balance type the bank reported.</li>
+  <li>Transactions in full — date, amount, currency, the bank's free-text description, counterparty name, payment reference and the bank's own transaction code.</li>
+  <li>The complete unmodified payload returned by the bank for each transaction, stored as JSON. Depending on the bank this can include counterparty account numbers, postal addresses and merchant category codes.</li>
+  <li>Investments — instrument name, ISIN, quantity held, price, market value and cost basis, per account per date.</li>
+  <li>Derived data — spending categories, matched internal transfers, and the filenames of any statements imported by hand.</li>
+  <li>For a company entity, its organisation number.</li>
+</ul>
+<p>
+  It stores no username, no password, no email address and no personal identity number. It has
+  no user accounts because it has no users other than the person running it.
+</p>
+
+<h2>Where the data comes from</h2>
+<p>
+  Bank data is retrieved through <strong>Enable Banking Oy</strong>, a licensed Account
+  Information Service Provider supervised by the Finnish Financial Supervisory Authority
+  (FIN-FSA), under PSD2. Investment holdings are exported by hand from Avanza and Lysa and
+  imported from a local folder — PSD2 does not expose securities positions.
+</p>
+
+<h2>What leaves the machine</h2>
+<p>
+  One destination, and only when the software is asked to fetch data:
+  <code>api.enablebanking.com</code>. Outbound requests carry account identifiers, date ranges
+  and a token signed with the local private key; the bank data travels in the return
+  direction. Enable Banking necessarily sees the account data it brokers — that is what an
+  AISP does — and its own privacy terms govern that handling.
+</p>
+<p>
+  Nothing else is transmitted. There is no analytics, no tracking, no crash or error
+  reporting, no advertising, no cookies and no browser storage. The Next.js framework
+  collects anonymous usage statistics by default; this project disables that in its own start
+  scripts and in <code>.env.example</code>, so it does not run here.
+</p>
+
+<h2>Credentials</h2>
+<p>
+  The application never sees bank passwords and never sees BankID credentials. Authentication
+  happens at the bank's own page; the software only receives a short-lived authorization code
+  and exchanges it for a session identifier.
+</p>
+<p>
+  It does hold two secrets on disk, both unencrypted: the RSA private key that identifies the
+  application to Enable Banking, and the session identifier that grants read access to the
+  linked accounts until the consent expires. Anyone with file access to the machine can read
+  both.
+</p>
+
+<h2>Consent and how long it lasts</h2>
+<p>
+  Access is read-only — balances and transactions. The software cannot move money; no payment
+  functionality exists in it. Consent is requested for at most 90 days, or less where the bank
+  caps it lower, after which the connection stops working until it is re-authorised. Consent
+  can be withdrawn at any time from the bank's own interface, and separately by deleting the
+  stored session.
+</p>
+
+<h2>Retention</h2>
+<p>
+  Data is kept until it is deleted by hand. Deleting the <code>data/</code> directory removes
+  everything the application holds. Nothing expires on its own and there is no backup service.
+  Company records may be subject to statutory bookkeeping retention independently of this
+  software.
+</p>
+
+<h2>Other people in your transactions</h2>
+<p>
+  Transaction records inevitably name other parties — who was paid, who paid in. That data is
+  received from the bank, stored locally, shown only to the operator and disclosed to nobody.
+  It is not profiled, enriched or combined with any external source. Descriptions can
+  incidentally reveal sensitive things such as medical or union payments; no attempt is made
+  to detect or use that, and it receives the same local-only handling as everything else.
+</p>
+
+<h2>Security, plainly</h2>
+<p>What protects the data: it stays on one machine, the database and keys are excluded from version control, and traffic to Enable Banking uses HTTPS with a signed token.</p>
+<p>
+  What does not: the database is not encrypted at rest, the private key is stored unencrypted
+  because the software must use it unattended, and the dashboard has no login screen. It binds
+  to <code>127.0.0.1</code> so it is not reachable from the network, but anyone with access to
+  the machine or its filesystem can read everything. The security of this data is the
+  security of that computer.
+</p>
+
+<h2>Your rights</h2>
+<p>
+  In their usual form these do not really apply: the data subject holds the data, on their own
+  hardware, and can read, export, correct or destroy it directly. There is no controller to
+  petition. Rights against <em>Enable Banking</em> for the data it processes are exercised
+  against Enable Banking, and rights against a bank against that bank.
+</p>
+
+<h2>What this policy does not claim</h2>
+<p>
+  It does not claim data never leaves the machine — it reaches Enable Banking, by design. It
+  does not claim encryption at rest, access control, audit logging, or any certification. It
+  describes a personal tool honestly rather than presenting it as a hardened product.
+</p>
+
+<p class="meta">Last updated 5 September 2026. Changes are made by editing this page.</p>
+</main>
+</body>
+</html>

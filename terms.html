@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terms of Use — private-banking</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main>
+<p class="eyebrow"><a href="./">private-banking</a></p>
+<h1>Terms of Use</h1>
+<p class="lede">
+  These terms cover one private installation of <strong>private-banking</strong>, run by one
+  person on their own machine for their own accounts. Nothing here is offered to anyone else,
+  so this is short: what the software is, what it is not, and who carries the risk.
+</p>
+
+<h2>Who may use it</h2>
+<p>
+  Only the operator, Filip Gustafsson. This is not a product, a service or an offering. There
+  is no sign-up because there is nothing to sign up to. The same single person uses it for
+  both personal and company accounts; the company view is a filter over the same local
+  database, not a separate service for anyone else.
+</p>
+
+<h2>It only reads</h2>
+<p>
+  Access is requested for balances and transactions only. The software contains no payment
+  functionality of any kind and cannot initiate a transfer, change a standing order, or alter
+  anything at a bank. Its effect on your accounts is limited to reading them.
+</p>
+
+<h2>It is not the bank, and holds no licence</h2>
+<p>
+  Bank access is provided by <strong>Enable Banking Oy</strong>, an Account Information
+  Service Provider authorised and supervised by the Finnish Financial Supervisory Authority.
+  This software is a client of that service and holds no financial licence itself. It is not
+  affiliated with, endorsed by or acting for Handelsbanken, Avanza or Lysa; those names appear
+  only to identify whose data is being displayed.
+</p>
+
+<h2>Consent expires</h2>
+<p>
+  Bank access exists only while a valid PSD2 consent is in place — at most 90 days here, and
+  less where a bank caps it lower. When it lapses, data simply stops updating. Consent can be
+  withdrawn at the bank at any time. Note that withdrawing consent stops future retrieval; it
+  does not delete data already stored locally.
+</p>
+
+<h2>The figures are informational</h2>
+<p>
+  Nothing displayed is an account statement. Where a number here disagrees with your bank,
+  your broker or your fund provider, <em>their</em> record is the correct one. Investment
+  holdings in particular are only as current as the last file exported by hand, because PSD2
+  does not expose securities positions — a holdings figure may be weeks old.
+</p>
+
+<h2>Several numbers are computed, not reported</h2>
+<p>
+  No institution ever stated these; the software derives them, and each can be wrong:
+</p>
+<ul>
+  <li><strong>Historical balances</strong> are reconstructed by walking transactions backwards from a known balance, so they are only as complete as the transaction history.</li>
+  <li><strong>Returns</strong> are a chained Modified Dietz approximation over month-end snapshots, with a further simplification at portfolio level.</li>
+  <li><strong>Categories</strong> are assigned by text-matching rules and are frequently wrong until corrected.</li>
+  <li><strong>Internal transfers</strong> are matched heuristically by amount, sign and date proximity; a missed match distorts income and spending.</li>
+</ul>
+
+<h2>Not advice, and not an accounting record</h2>
+<p>
+  Nothing produced by this software is financial, investment, tax or legal advice. It is not a
+  bookkeeping system, is not designed to satisfy <em>bokföringslagen</em>, and must not be
+  used as the basis for a tax return or an annual report. Company accounting obligations are
+  unaffected by it.
+</p>
+
+<h2>As is, with no warranty</h2>
+<p>
+  The software is provided as is, without warranty of any kind — no guarantee of accuracy,
+  completeness, availability or fitness for any purpose. There is no support, no uptime
+  commitment and no maintenance obligation. It may break when a bank changes its API or an
+  export format, and may then simply be abandoned.
+</p>
+
+<h2>Liability</h2>
+<p>
+  This is free software the operator wrote for himself. To the fullest extent permitted by
+  law, no liability is accepted by anyone for any loss arising from its use — including
+  decisions taken on the strength of a figure it displayed.
+</p>
+
+<h2>Security is the operator's own responsibility</h2>
+<p>
+  There is no login screen. The database is unencrypted, and the private key that identifies
+  the application to Enable Banking is stored unencrypted because it must be usable
+  unattended. The server binds to <code>127.0.0.1</code> and is not exposed to the network by
+  default. Anyone with access to the machine has access to everything in it; protecting that
+  machine is entirely the operator's responsibility.
+</p>
+
+<h2>It may stop at any time</h2>
+<p>
+  The operator may stop running, modify or delete this software and its data at any moment,
+  without notice, and owes no one an explanation. Nothing runs on a schedule — data is only
+  fetched when a command is run by hand.
+</p>
+
+<h2>Data handling</h2>
+<p>
+  Covered separately in the <a href="./privacy.html">privacy policy</a>.
+</p>
+
+<h2>The usual commercial terms are absent</h2>
+<p>
+  There are no fees, accounts, subscriptions, service levels, indemnities, arbitration clauses
+  or consumer-complaint routes here — not as an oversight, but because there is no commercial
+  relationship for them to govern. Swedish law applies to the extent any question arises.
+</p>
+
+<p class="meta">Last updated 5 September 2026. Changes are made by editing this page.</p>
+</main>
+</body>
+</html>

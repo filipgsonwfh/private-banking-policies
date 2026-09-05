@@ -1,0 +1,134 @@
+:root {
+  color-scheme: light;
+  --surface: #fcfcfb;
+  --plane: #f9f9f7;
+  --ink: #0b0b0b;
+  --ink-2: #33322f;
+  --muted: #6d6b66;
+  --rule: #e1e0d9;
+  --accent: #2a78d6;
+  --wash: rgba(11, 11, 11, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --surface: #1a1a19;
+    --plane: #0d0d0d;
+    --ink: #ffffff;
+    --ink-2: #d6d5cc;
+    --muted: #9a988f;
+    --rule: #2c2c2a;
+    --accent: #6da7ec;
+    --wash: rgba(255, 255, 255, 0.07);
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--plane);
+  color: var(--ink-2);
+  font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 6rem;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+
+.eyebrow a { color: var(--muted); text-decoration: none; }
+.eyebrow a:hover { color: var(--accent); }
+
+h1 {
+  font-size: clamp(1.9rem, 5vw, 2.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 1.25rem;
+}
+
+h2 {
+  font-size: 1.02rem;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin: 2.75rem 0 0.6rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+}
+
+.lede {
+  font-size: 1.06rem;
+  color: var(--ink-2);
+  margin: 0 0 1rem;
+}
+
+p { margin: 0 0 1rem; }
+
+ul {
+  margin: 0 0 1rem;
+  padding-left: 1.15rem;
+}
+
+li { margin-bottom: 0.5rem; }
+
+a { color: var(--accent); }
+
+strong { color: var(--ink); font-weight: 600; }
+
+code {
+  background: var(--wash);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.88em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.meta {
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.card-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-list a {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 550;
+}
+
+.card-list a:hover { border-color: var(--accent); }
+
+.card-list span {
+  display: block;
+  font-weight: 400;
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
